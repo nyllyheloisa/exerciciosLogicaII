@@ -1,0 +1,55 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    pincel.fillStyle = "grey"
+    pincel.fillRect(0, 0, 600, 400)
+
+    var cores = ["blue", "red", "green", "yellow"]
+    var indiceCor = 0
+    
+    var raio = 10
+
+    function desenhaCirculo(evento) {
+        console.log(evento)
+
+        // offset é o limite que queremos, nesse caso ajustamos a nossa tela de desenho
+        var x = evento.pageX - tela.offsetLeft
+        var y = evento.pageY - tela.offsetTop
+
+        // verifica se obotão shift & alt esta apertado
+        if(evento.shiftKey && evento.altKey) {
+            alert("Aperte apenas uma tecla por vez!")
+
+        } else if(evento.shiftKey && raio + 10 <= 40) {
+            raio += 10
+
+        } else if(evento.altKey && raio - 5 >= 10) {
+            raio -= 5
+        }
+
+        pincel.fillStyle = cores[indiceCor];
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * 3.14);
+        pincel.fill();
+        
+    }
+
+    function mudaCor() {
+        indiceCor++
+
+        if(indiceCor >= cores.length) {
+            indiceCor = 0
+        }
+
+        return false;
+    }
+
+    tela.onclick = desenhaCirculo;
+    tela.oncontextmenu = mudaCor;
+    // verifica se clicamos o botão DIREITO, se sim a cor muda
+
+</script>

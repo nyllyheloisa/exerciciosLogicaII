@@ -1,0 +1,36 @@
+<canvas width="600" height="400"></canvas>
+<script>
+
+    var tela = document.querySelector("canvas");
+    // Adiciona um contexto
+    var pincel = tela.getContext("2d");
+
+    // O estilo do preenchimento
+    pincel.fillStyle = "grey";
+    // O formato do preenchimento. Rect = retangulo
+    pincel.fillRect(0, 0, 600, 400);
+
+    pincel.fillStyle = "blue";
+    pincel.fillRect(0, 0, 200, 400);
+
+    pincel.fillStyle = "green";
+    pincel.fillRect(400, 0, 200, 400);
+
+    pincel.fillStyle = "red";
+    // pega o "pincel" para começar a desenhar
+    pincel.beginPath()
+    // adiciona um ponto inicial
+    pincel.moveTo(300, 150);
+    // arrasta sua linha
+    pincel.lineTo(400, 250);
+    pincel.lineTo(200, 250);
+    // preenche
+    pincel.fill();
+
+    pincel.fillStyle = "black";
+    pincel.beginPath()
+    // começa um circulo
+    pincel.arc(300, 200, 25, 0, 2 * 3.14);
+    pincel.fill();
+
+</script>

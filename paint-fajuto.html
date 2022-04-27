@@ -1,0 +1,47 @@
+<canvas width="600" height="400"></canvas>
+<br>selecione uma cor<input type="color">
+
+<script>
+
+    var cor = document.querySelector("input")
+
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    var pinta = false
+
+    function desenha(evento) {
+
+        if(pinta) {
+
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+    
+            pincel.fillStyle = cor.value;
+            pincel.beginPath();
+            pincel.arc(x, y, 10, 0, 2 * 3.14);
+            pincel.fill();
+            
+        }
+        // console.log(evento)
+
+
+    }
+    // le o movimento do mouse
+    tela.onmousemove = desenha;
+
+    // percebe quando clicamos o botão esquerdo do mouse 
+    tela.onmousedown = function() {
+        pinta = true;
+    }
+
+    // percebe quando soltamos o botão  do mouse
+    tela.onmouseup = function() {
+        pinta = false;
+    }
+
+
+</script>
